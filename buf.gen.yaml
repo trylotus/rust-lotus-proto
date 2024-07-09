@@ -1,0 +1,6 @@
+version: v2
+plugins:
+  - local: protoc-gen-rust
+    out: gen/rust
+inputs:
+  - module: buf.build/lotus/lotus-proto:v1.0.0
