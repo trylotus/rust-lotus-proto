@@ -30,10 +30,10 @@ const _PROTOBUF_VERSION_CHECK: () = ::protobuf::VERSION_3_5_0;
 #[derive(PartialEq,Clone,Default,Debug)]
 pub struct IndexOption {
     // message fields
-    ///  Type of index (defaults to ordered).
+    ///  Type of index (default to ordered).
     // @@protoc_insertion_point(field:lotus.IndexOption.type)
     pub type_: ::protobuf::EnumOrUnknown<IndexType>,
-    ///  Whether this is a unique index (defaults to false).
+    ///  Whether this is a unique index (default to false).
     // @@protoc_insertion_point(field:lotus.IndexOption.unique)
     pub unique: bool,
     // special fields
@@ -298,10 +298,10 @@ impl ::protobuf::reflect::ProtobufValue for CompositeIndexesOption {
 #[derive(PartialEq,Clone,Default,Debug)]
 pub struct CompositeIndexOption {
     // message fields
-    ///  Type of composite index (defaults to ordered).
+    ///  Type of composite index (default to ordered).
     // @@protoc_insertion_point(field:lotus.CompositeIndexOption.type)
     pub type_: ::protobuf::EnumOrUnknown<IndexType>,
-    ///  Whether this is a unique index (defaults to false).
+    ///  Whether this is a unique index (default to false).
     // @@protoc_insertion_point(field:lotus.CompositeIndexOption.unique)
     pub unique: bool,
     ///  List of field names involved in the composite index.
@@ -460,7 +460,7 @@ impl ::protobuf::reflect::ProtobufValue for CompositeIndexOption {
 #[derive(PartialEq,Clone,Default,Debug)]
 pub struct BytesOption {
     // message fields
-    ///  Format to use for displaying binary data (defaults to base64).
+    ///  Format to use for displaying binary data (default to base64).
     // @@protoc_insertion_point(field:lotus.BytesOption.format)
     pub format: ::protobuf::EnumOrUnknown<FormatType>,
     // special fields
@@ -722,6 +722,225 @@ impl ::protobuf::reflect::ProtobufValue for NumericOption {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
+///  Defines options for aggregating data from another message.
+// @@protoc_insertion_point(message:lotus.ViewOption)
+#[derive(PartialEq,Clone,Default,Debug)]
+pub struct ViewOption {
+    // message fields
+    ///  Topic that is aggregated from.
+    // @@protoc_insertion_point(field:lotus.ViewOption.topic)
+    pub topic: ::std::string::String,
+    ///  Whether this is a materialized view (default to false).
+    // @@protoc_insertion_point(field:lotus.ViewOption.materialized)
+    pub materialized: bool,
+    ///  Whether to enable realtime aggregation (default to false).
+    // @@protoc_insertion_point(field:lotus.ViewOption.realtime)
+    pub realtime: bool,
+    ///  Time interval to refresh materialized view.
+    // @@protoc_insertion_point(field:lotus.ViewOption.refresh_interval)
+    pub refresh_interval: ::std::string::String,
+    ///  View options.
+    // @@protoc_insertion_point(field:lotus.ViewOption.options)
+    pub options: ::std::vec::Vec<::std::string::String>,
+    ///  List of field names used for aggregation.
+    // @@protoc_insertion_point(field:lotus.ViewOption.group_by)
+    pub group_by: ::std::vec::Vec<::std::string::String>,
+    // special fields
+    // @@protoc_insertion_point(special_field:lotus.ViewOption.special_fields)
+    pub special_fields: ::protobuf::SpecialFields,
+}
+
+impl<'a> ::std::default::Default for &'a ViewOption {
+    fn default() -> &'a ViewOption {
+        <ViewOption as ::protobuf::Message>::default_instance()
+    }
+}
+
+impl ViewOption {
+    pub fn new() -> ViewOption {
+        ::std::default::Default::default()
+    }
+
+    fn generated_message_descriptor_data() -> ::protobuf::reflect::GeneratedMessageDescriptorData {
+        let mut fields = ::std::vec::Vec::with_capacity(6);
+        let mut oneofs = ::std::vec::Vec::with_capacity(0);
+        fields.push(::protobuf::reflect::rt::v2::make_simpler_field_accessor::<_, _>(
+            "topic",
+            |m: &ViewOption| { &m.topic },
+            |m: &mut ViewOption| { &mut m.topic },
+        ));
+        fields.push(::protobuf::reflect::rt::v2::make_simpler_field_accessor::<_, _>(
+            "materialized",
+            |m: &ViewOption| { &m.materialized },
+            |m: &mut ViewOption| { &mut m.materialized },
+        ));
+        fields.push(::protobuf::reflect::rt::v2::make_simpler_field_accessor::<_, _>(
+            "realtime",
+            |m: &ViewOption| { &m.realtime },
+            |m: &mut ViewOption| { &mut m.realtime },
+        ));
+        fields.push(::protobuf::reflect::rt::v2::make_simpler_field_accessor::<_, _>(
+            "refresh_interval",
+            |m: &ViewOption| { &m.refresh_interval },
+            |m: &mut ViewOption| { &mut m.refresh_interval },
+        ));
+        fields.push(::protobuf::reflect::rt::v2::make_vec_simpler_accessor::<_, _>(
+            "options",
+            |m: &ViewOption| { &m.options },
+            |m: &mut ViewOption| { &mut m.options },
+        ));
+        fields.push(::protobuf::reflect::rt::v2::make_vec_simpler_accessor::<_, _>(
+            "group_by",
+            |m: &ViewOption| { &m.group_by },
+            |m: &mut ViewOption| { &mut m.group_by },
+        ));
+        ::protobuf::reflect::GeneratedMessageDescriptorData::new_2::<ViewOption>(
+            "ViewOption",
+            fields,
+            oneofs,
+        )
+    }
+}
+
+impl ::protobuf::Message for ViewOption {
+    const NAME: &'static str = "ViewOption";
+
+    fn is_initialized(&self) -> bool {
+        true
+    }
+
+    fn merge_from(&mut self, is: &mut ::protobuf::CodedInputStream<'_>) -> ::protobuf::Result<()> {
+        while let Some(tag) = is.read_raw_tag_or_eof()? {
+            match tag {
+                10 => {
+                    self.topic = is.read_string()?;
+                },
+                16 => {
+                    self.materialized = is.read_bool()?;
+                },
+                24 => {
+                    self.realtime = is.read_bool()?;
+                },
+                34 => {
+                    self.refresh_interval = is.read_string()?;
+                },
+                42 => {
+                    self.options.push(is.read_string()?);
+                },
+                50 => {
+                    self.group_by.push(is.read_string()?);
+                },
+                tag => {
+                    ::protobuf::rt::read_unknown_or_skip_group(tag, is, self.special_fields.mut_unknown_fields())?;
+                },
+            };
+        }
+        ::std::result::Result::Ok(())
+    }
+
+    // Compute sizes of nested messages
+    #[allow(unused_variables)]
+    fn compute_size(&self) -> u64 {
+        let mut my_size = 0;
+        if !self.topic.is_empty() {
+            my_size += ::protobuf::rt::string_size(1, &self.topic);
+        }
+        if self.materialized != false {
+            my_size += 1 + 1;
+        }
+        if self.realtime != false {
+            my_size += 1 + 1;
+        }
+        if !self.refresh_interval.is_empty() {
+            my_size += ::protobuf::rt::string_size(4, &self.refresh_interval);
+        }
+        for value in &self.options {
+            my_size += ::protobuf::rt::string_size(5, &value);
+        };
+        for value in &self.group_by {
+            my_size += ::protobuf::rt::string_size(6, &value);
+        };
+        my_size += ::protobuf::rt::unknown_fields_size(self.special_fields.unknown_fields());
+        self.special_fields.cached_size().set(my_size as u32);
+        my_size
+    }
+
+    fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream<'_>) -> ::protobuf::Result<()> {
+        if !self.topic.is_empty() {
+            os.write_string(1, &self.topic)?;
+        }
+        if self.materialized != false {
+            os.write_bool(2, self.materialized)?;
+        }
+        if self.realtime != false {
+            os.write_bool(3, self.realtime)?;
+        }
+        if !self.refresh_interval.is_empty() {
+            os.write_string(4, &self.refresh_interval)?;
+        }
+        for v in &self.options {
+            os.write_string(5, &v)?;
+        };
+        for v in &self.group_by {
+            os.write_string(6, &v)?;
+        };
+        os.write_unknown_fields(self.special_fields.unknown_fields())?;
+        ::std::result::Result::Ok(())
+    }
+
+    fn special_fields(&self) -> &::protobuf::SpecialFields {
+        &self.special_fields
+    }
+
+    fn mut_special_fields(&mut self) -> &mut ::protobuf::SpecialFields {
+        &mut self.special_fields
+    }
+
+    fn new() -> ViewOption {
+        ViewOption::new()
+    }
+
+    fn clear(&mut self) {
+        self.topic.clear();
+        self.materialized = false;
+        self.realtime = false;
+        self.refresh_interval.clear();
+        self.options.clear();
+        self.group_by.clear();
+        self.special_fields.clear();
+    }
+
+    fn default_instance() -> &'static ViewOption {
+        static instance: ViewOption = ViewOption {
+            topic: ::std::string::String::new(),
+            materialized: false,
+            realtime: false,
+            refresh_interval: ::std::string::String::new(),
+            options: ::std::vec::Vec::new(),
+            group_by: ::std::vec::Vec::new(),
+            special_fields: ::protobuf::SpecialFields::new(),
+        };
+        &instance
+    }
+}
+
+impl ::protobuf::MessageFull for ViewOption {
+    fn descriptor() -> ::protobuf::reflect::MessageDescriptor {
+        static descriptor: ::protobuf::rt::Lazy<::protobuf::reflect::MessageDescriptor> = ::protobuf::rt::Lazy::new();
+        descriptor.get(|| file_descriptor().message_by_package_relative_name("ViewOption").unwrap()).clone()
+    }
+}
+
+impl ::std::fmt::Display for ViewOption {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        ::protobuf::text_format::fmt(self, f)
+    }
+}
+
+impl ::protobuf::reflect::ProtobufValue for ViewOption {
+    type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
+}
+
 ///  Specifies the type of index.
 #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
 // @@protoc_insertion_point(enum:lotus.IndexType)
@@ -853,11 +1072,15 @@ pub mod exts {
 
     pub const composite: ::protobuf::ext::ExtFieldOptional<::protobuf::descriptor::MessageOptions, super::CompositeIndexesOption> = ::protobuf::ext::ExtFieldOptional::new(99001, ::protobuf::descriptor::field_descriptor_proto::Type::TYPE_MESSAGE);
 
+    pub const view: ::protobuf::ext::ExtFieldOptional<::protobuf::descriptor::MessageOptions, super::ViewOption> = ::protobuf::ext::ExtFieldOptional::new(99002, ::protobuf::descriptor::field_descriptor_proto::Type::TYPE_MESSAGE);
+
     pub const index: ::protobuf::ext::ExtFieldOptional<::protobuf::descriptor::FieldOptions, super::IndexOption> = ::protobuf::ext::ExtFieldOptional::new(99001, ::protobuf::descriptor::field_descriptor_proto::Type::TYPE_MESSAGE);
 
     pub const bytes: ::protobuf::ext::ExtFieldOptional<::protobuf::descriptor::FieldOptions, super::BytesOption> = ::protobuf::ext::ExtFieldOptional::new(99002, ::protobuf::descriptor::field_descriptor_proto::Type::TYPE_MESSAGE);
 
     pub const numeric: ::protobuf::ext::ExtFieldOptional<::protobuf::descriptor::FieldOptions, super::NumericOption> = ::protobuf::ext::ExtFieldOptional::new(99003, ::protobuf::descriptor::field_descriptor_proto::Type::TYPE_MESSAGE);
+
+    pub const projection: ::protobuf::ext::ExtFieldOptional<::protobuf::descriptor::FieldOptions, ::std::string::String> = ::protobuf::ext::ExtFieldOptional::new(99004, ::protobuf::descriptor::field_descriptor_proto::Type::TYPE_STRING);
 }
 
 static file_descriptor_proto_data: &'static [u8] = b"\
@@ -872,102 +1095,145 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x01(\x0e2\x11.lotus.FormatTypeR\x06format\"e\n\rNumericOption\x12!\n\tp\
     recision\x18\x01\x20\x01(\rH\0R\tprecision\x88\x01\x01\x12\x19\n\x05scal\
     e\x18\x02\x20\x01(\rH\x01R\x05scale\x88\x01\x01B\x0c\n\n_precisionB\x08\
-    \n\x06_scale*=\n\tIndexType\x12\x16\n\x12INDEX_TYPE_ORDERED\x10\0\x12\
+    \n\x06_scale\"\xc2\x01\n\nViewOption\x12\x14\n\x05topic\x18\x01\x20\x01(\
+    \tR\x05topic\x12\"\n\x0cmaterialized\x18\x02\x20\x01(\x08R\x0cmaterializ\
+    ed\x12\x1a\n\x08realtime\x18\x03\x20\x01(\x08R\x08realtime\x12)\n\x10ref\
+    resh_interval\x18\x04\x20\x01(\tR\x0frefreshInterval\x12\x18\n\x07option\
+    s\x18\x05\x20\x03(\tR\x07options\x12\x19\n\x08group_by\x18\x06\x20\x03(\
+    \tR\x07groupBy*=\n\tIndexType\x12\x16\n\x12INDEX_TYPE_ORDERED\x10\0\x12\
     \x18\n\x14INDEX_TYPE_UNORDERED\x10\x01*9\n\nFormatType\x12\x16\n\x12FORM\
     AT_TYPE_BASE64\x10\0\x12\x13\n\x0fFORMAT_TYPE_HEX\x10\x01:a\n\tcomposite\
     \x18\xb9\x85\x06\x20\x01(\x0b2\x1d.lotus.CompositeIndexesOption\x12\x1f.\
-    google.protobuf.MessageOptionsR\tcomposite\x88\x01\x01:L\n\x05index\x18\
-    \xb9\x85\x06\x20\x01(\x0b2\x12.lotus.IndexOption\x12\x1d.google.protobuf\
-    .FieldOptionsR\x05index\x88\x01\x01:L\n\x05bytes\x18\xba\x85\x06\x20\x01\
-    (\x0b2\x12.lotus.BytesOption\x12\x1d.google.protobuf.FieldOptionsR\x05by\
-    tes\x88\x01\x01:R\n\x07numeric\x18\xbb\x85\x06\x20\x01(\x0b2\x14.lotus.N\
-    umericOption\x12\x1d.google.protobuf.FieldOptionsR\x07numeric\x88\x01\
-    \x01B*Z(github.com/trylotus/go-lotus-proto;lotusJ\x89\x14\n\x06\x12\x04\
-    \0\0L\x01\n\x08\n\x01\x0c\x12\x03\0\0\x12\n\x08\n\x01\x02\x12\x03\x02\0\
-    \x0e\n\t\n\x02\x03\0\x12\x03\x04\0*\n\x08\n\x01\x08\x12\x03\x06\0?\n\t\n\
-    \x02\x08\x0b\x12\x03\x06\0?\nN\n\x01\x07\x12\x04\t\0\x0c\x01\x1aC\x20Thi\
-    s\x20extension\x20allows\x20adding\x20options\x20to\x20protocol\x20buffe\
-    r\x20messages.\n\nD\n\x02\x07\0\x12\x03\x0b\x024\x1a9\x20Option\x20to\
-    \x20specify\x20composite\x20indexes\x20on\x20multiple\x20fields.\n\n\n\n\
-    \x03\x07\0\x02\x12\x03\t\x07%\n\n\n\x03\x07\0\x04\x12\x03\x0b\x02\n\n\n\
-    \n\x03\x07\0\x06\x12\x03\x0b\x0b!\n\n\n\x03\x07\0\x01\x12\x03\x0b\"+\n\n\
-    \n\x03\x07\0\x03\x12\x03\x0b.3\nL\n\x01\x07\x12\x04\x0f\0\x16\x01\x1aA\
-    \x20This\x20extension\x20allows\x20adding\x20options\x20to\x20protocol\
-    \x20buffer\x20fields.\n\n/\n\x02\x07\x01\x12\x03\x11\x02%\x1a$\x20Option\
-    \x20to\x20mark\x20a\x20field\x20as\x20indexed.\n\n\n\n\x03\x07\x01\x02\
-    \x12\x03\x0f\x07#\n\n\n\x03\x07\x01\x04\x12\x03\x11\x02\n\n\n\n\x03\x07\
-    \x01\x06\x12\x03\x11\x0b\x16\n\n\n\x03\x07\x01\x01\x12\x03\x11\x17\x1c\n\
-    \n\n\x03\x07\x01\x03\x12\x03\x11\x1f$\nD\n\x02\x07\x02\x12\x03\x13\x02%\
-    \x1a9\x20Option\x20to\x20specify\x20how\x20bytes\x20fields\x20are\x20enc\
-    oded/decoded.\n\n\n\n\x03\x07\x02\x02\x12\x03\x0f\x07#\n\n\n\x03\x07\x02\
-    \x04\x12\x03\x13\x02\n\n\n\n\x03\x07\x02\x06\x12\x03\x13\x0b\x16\n\n\n\
-    \x03\x07\x02\x01\x12\x03\x13\x17\x1c\n\n\n\x03\x07\x02\x03\x12\x03\x13\
-    \x1f$\nI\n\x02\x07\x03\x12\x03\x15\x02)\x1a>\x20Option\x20to\x20specify\
-    \x20how\x20numeric\x20fields\x20are\x20scaled/represented.\n\n\n\n\x03\
-    \x07\x03\x02\x12\x03\x0f\x07#\n\n\n\x03\x07\x03\x04\x12\x03\x15\x02\n\n\
-    \n\n\x03\x07\x03\x06\x12\x03\x15\x0b\x18\n\n\n\x03\x07\x03\x01\x12\x03\
-    \x15\x19\x20\n\n\n\x03\x07\x03\x03\x12\x03\x15#(\n*\n\x02\x05\0\x12\x04\
-    \x19\0\x1e\x01\x1a\x1e\x20Specifies\x20the\x20type\x20of\x20index.\n\n\n\
-    \n\x03\x05\0\x01\x12\x03\x19\x05\x0e\n/\n\x04\x05\0\x02\0\x12\x03\x1b\
-    \x02\x19\x1a\"\x20Ordered\x20index\x20(maintains\x20order).\n\n\x0c\n\
-    \x05\x05\0\x02\0\x01\x12\x03\x1b\x02\x14\n\x0c\n\x05\x05\0\x02\0\x02\x12\
-    \x03\x1b\x17\x18\n4\n\x04\x05\0\x02\x01\x12\x03\x1d\x02\x1b\x1a'\x20Unor\
-    dered\x20index\x20(faster\x20for\x20lookups).\n\n\x0c\n\x05\x05\0\x02\
-    \x01\x01\x12\x03\x1d\x02\x16\n\x0c\n\x05\x05\0\x02\x01\x02\x12\x03\x1d\
-    \x19\x1a\n3\n\x02\x04\0\x12\x04!\0&\x01\x1a'\x20Defines\x20options\x20fo\
-    r\x20indexing\x20a\x20field.\n\n\n\n\x03\x04\0\x01\x12\x03!\x08\x13\n3\n\
-    \x04\x04\0\x02\0\x12\x03#\x02\x15\x1a&\x20Type\x20of\x20index\x20(defaul\
-    ts\x20to\x20ordered).\n\n\x0c\n\x05\x04\0\x02\0\x06\x12\x03#\x02\x0b\n\
-    \x0c\n\x05\x04\0\x02\0\x01\x12\x03#\x0c\x10\n\x0c\n\x05\x04\0\x02\0\x03\
-    \x12\x03#\x13\x14\nB\n\x04\x04\0\x02\x01\x12\x03%\x02\x12\x1a5\x20Whethe\
-    r\x20this\x20is\x20a\x20unique\x20index\x20(defaults\x20to\x20false).\n\
-    \n\x0c\n\x05\x04\0\x02\x01\x05\x12\x03%\x02\x06\n\x0c\n\x05\x04\0\x02\
-    \x01\x01\x12\x03%\x07\r\n\x0c\n\x05\x04\0\x02\x01\x03\x12\x03%\x10\x11\n\
-    ;\n\x02\x04\x01\x12\x04)\0,\x01\x1a/\x20Defines\x20options\x20for\x20ind\
-    exing\x20multiple\x20fields.\n\n\n\n\x03\x04\x01\x01\x12\x03)\x08\x1e\n)\
-    \n\x04\x04\x01\x02\0\x12\x03+\x02*\x1a\x1c\x20List\x20of\x20composite\
-    \x20indexes.\n\n\x0c\n\x05\x04\x01\x02\0\x04\x12\x03+\x02\n\n\x0c\n\x05\
-    \x04\x01\x02\0\x06\x12\x03+\x0b\x1f\n\x0c\n\x05\x04\x01\x02\0\x01\x12\
-    \x03+\x20%\n\x0c\n\x05\x04\x01\x02\0\x03\x12\x03+()\nN\n\x02\x04\x02\x12\
-    \x04/\06\x01\x1aB\x20Defines\x20options\x20for\x20composite\x20indexes\
-    \x20involving\x20multiple\x20fields.\n\n\n\n\x03\x04\x02\x01\x12\x03/\
-    \x08\x1c\n=\n\x04\x04\x02\x02\0\x12\x031\x02\x15\x1a0\x20Type\x20of\x20c\
-    omposite\x20index\x20(defaults\x20to\x20ordered).\n\n\x0c\n\x05\x04\x02\
-    \x02\0\x06\x12\x031\x02\x0b\n\x0c\n\x05\x04\x02\x02\0\x01\x12\x031\x0c\
-    \x10\n\x0c\n\x05\x04\x02\x02\0\x03\x12\x031\x13\x14\nB\n\x04\x04\x02\x02\
-    \x01\x12\x033\x02\x12\x1a5\x20Whether\x20this\x20is\x20a\x20unique\x20in\
-    dex\x20(defaults\x20to\x20false).\n\n\x0c\n\x05\x04\x02\x02\x01\x05\x12\
-    \x033\x02\x06\n\x0c\n\x05\x04\x02\x02\x01\x01\x12\x033\x07\r\n\x0c\n\x05\
-    \x04\x02\x02\x01\x03\x12\x033\x10\x11\nC\n\x04\x04\x02\x02\x02\x12\x035\
+    google.protobuf.MessageOptionsR\tcomposite\x88\x01\x01:K\n\x04view\x18\
+    \xba\x85\x06\x20\x01(\x0b2\x11.lotus.ViewOption\x12\x1f.google.protobuf.\
+    MessageOptionsR\x04view\x88\x01\x01:L\n\x05index\x18\xb9\x85\x06\x20\x01\
+    (\x0b2\x12.lotus.IndexOption\x12\x1d.google.protobuf.FieldOptionsR\x05in\
+    dex\x88\x01\x01:L\n\x05bytes\x18\xba\x85\x06\x20\x01(\x0b2\x12.lotus.Byt\
+    esOption\x12\x1d.google.protobuf.FieldOptionsR\x05bytes\x88\x01\x01:R\n\
+    \x07numeric\x18\xbb\x85\x06\x20\x01(\x0b2\x14.lotus.NumericOption\x12\
+    \x1d.google.protobuf.FieldOptionsR\x07numeric\x88\x01\x01:B\n\nprojectio\
+    n\x18\xbc\x85\x06\x20\x01(\t\x12\x1d.google.protobuf.FieldOptionsR\nproj\
+    ection\x88\x01\x01B*Z(github.com/trylotus/go-lotus-proto;lotusJ\xd7\x1b\
+    \n\x06\x12\x04\0\0`\x01\n\x08\n\x01\x0c\x12\x03\0\0\x12\n\x08\n\x01\x02\
+    \x12\x03\x02\0\x0e\n\t\n\x02\x03\0\x12\x03\x04\0*\n\x08\n\x01\x08\x12\
+    \x03\x06\0?\n\t\n\x02\x08\x0b\x12\x03\x06\0?\nN\n\x01\x07\x12\x04\t\0\
+    \x0e\x01\x1aC\x20This\x20extension\x20allows\x20adding\x20options\x20to\
+    \x20protocol\x20buffer\x20messages.\n\nD\n\x02\x07\0\x12\x03\x0b\x024\
+    \x1a9\x20Option\x20to\x20specify\x20composite\x20indexes\x20on\x20multip\
+    le\x20fields.\n\n\n\n\x03\x07\0\x02\x12\x03\t\x07%\n\n\n\x03\x07\0\x04\
+    \x12\x03\x0b\x02\n\n\n\n\x03\x07\0\x06\x12\x03\x0b\x0b!\n\n\n\x03\x07\0\
+    \x01\x12\x03\x0b\"+\n\n\n\x03\x07\0\x03\x12\x03\x0b.3\nF\n\x02\x07\x01\
+    \x12\x03\r\x02#\x1a;\x20Option\x20to\x20specify\x20a\x20view\x20aggregat\
+    ed\x20from\x20another\x20message.\n\n\n\n\x03\x07\x01\x02\x12\x03\t\x07%\
+    \n\n\n\x03\x07\x01\x04\x12\x03\r\x02\n\n\n\n\x03\x07\x01\x06\x12\x03\r\
+    \x0b\x15\n\n\n\x03\x07\x01\x01\x12\x03\r\x16\x1a\n\n\n\x03\x07\x01\x03\
+    \x12\x03\r\x1d\"\nL\n\x01\x07\x12\x04\x11\0\x1a\x01\x1aA\x20This\x20exte\
+    nsion\x20allows\x20adding\x20options\x20to\x20protocol\x20buffer\x20fiel\
+    ds.\n\n/\n\x02\x07\x02\x12\x03\x13\x02%\x1a$\x20Option\x20to\x20mark\x20\
+    a\x20field\x20as\x20indexed.\n\n\n\n\x03\x07\x02\x02\x12\x03\x11\x07#\n\
+    \n\n\x03\x07\x02\x04\x12\x03\x13\x02\n\n\n\n\x03\x07\x02\x06\x12\x03\x13\
+    \x0b\x16\n\n\n\x03\x07\x02\x01\x12\x03\x13\x17\x1c\n\n\n\x03\x07\x02\x03\
+    \x12\x03\x13\x1f$\nD\n\x02\x07\x03\x12\x03\x15\x02%\x1a9\x20Option\x20to\
+    \x20specify\x20how\x20bytes\x20fields\x20are\x20encoded/decoded.\n\n\n\n\
+    \x03\x07\x03\x02\x12\x03\x11\x07#\n\n\n\x03\x07\x03\x04\x12\x03\x15\x02\
+    \n\n\n\n\x03\x07\x03\x06\x12\x03\x15\x0b\x16\n\n\n\x03\x07\x03\x01\x12\
+    \x03\x15\x17\x1c\n\n\n\x03\x07\x03\x03\x12\x03\x15\x1f$\nI\n\x02\x07\x04\
+    \x12\x03\x17\x02)\x1a>\x20Option\x20to\x20specify\x20how\x20numeric\x20f\
+    ields\x20are\x20scaled/represented.\n\n\n\n\x03\x07\x04\x02\x12\x03\x11\
+    \x07#\n\n\n\x03\x07\x04\x04\x12\x03\x17\x02\n\n\n\n\x03\x07\x04\x06\x12\
+    \x03\x17\x0b\x18\n\n\n\x03\x07\x04\x01\x12\x03\x17\x19\x20\n\n\n\x03\x07\
+    \x04\x03\x12\x03\x17#(\nM\n\x02\x07\x05\x12\x03\x19\x02%\x1aB\x20Option\
+    \x20to\x20define\x20a\x20calculated\x20field,\x20computed\x20from\x20oth\
+    er\x20fields.\n\n\n\n\x03\x07\x05\x02\x12\x03\x11\x07#\n\n\n\x03\x07\x05\
+    \x04\x12\x03\x19\x02\n\n\n\n\x03\x07\x05\x05\x12\x03\x19\x0b\x11\n\n\n\
+    \x03\x07\x05\x01\x12\x03\x19\x12\x1c\n\n\n\x03\x07\x05\x03\x12\x03\x19\
+    \x1f$\n*\n\x02\x05\0\x12\x04\x1d\0\"\x01\x1a\x1e\x20Specifies\x20the\x20\
+    type\x20of\x20index.\n\n\n\n\x03\x05\0\x01\x12\x03\x1d\x05\x0e\n/\n\x04\
+    \x05\0\x02\0\x12\x03\x1f\x02\x19\x1a\"\x20Ordered\x20index\x20(maintains\
+    \x20order).\n\n\x0c\n\x05\x05\0\x02\0\x01\x12\x03\x1f\x02\x14\n\x0c\n\
+    \x05\x05\0\x02\0\x02\x12\x03\x1f\x17\x18\n4\n\x04\x05\0\x02\x01\x12\x03!\
+    \x02\x1b\x1a'\x20Unordered\x20index\x20(faster\x20for\x20lookups).\n\n\
+    \x0c\n\x05\x05\0\x02\x01\x01\x12\x03!\x02\x16\n\x0c\n\x05\x05\0\x02\x01\
+    \x02\x12\x03!\x19\x1a\n3\n\x02\x04\0\x12\x04%\0*\x01\x1a'\x20Defines\x20\
+    options\x20for\x20indexing\x20a\x20field.\n\n\n\n\x03\x04\0\x01\x12\x03%\
+    \x08\x13\n2\n\x04\x04\0\x02\0\x12\x03'\x02\x15\x1a%\x20Type\x20of\x20ind\
+    ex\x20(default\x20to\x20ordered).\n\n\x0c\n\x05\x04\0\x02\0\x06\x12\x03'\
+    \x02\x0b\n\x0c\n\x05\x04\0\x02\0\x01\x12\x03'\x0c\x10\n\x0c\n\x05\x04\0\
+    \x02\0\x03\x12\x03'\x13\x14\nA\n\x04\x04\0\x02\x01\x12\x03)\x02\x12\x1a4\
+    \x20Whether\x20this\x20is\x20a\x20unique\x20index\x20(default\x20to\x20f\
+    alse).\n\n\x0c\n\x05\x04\0\x02\x01\x05\x12\x03)\x02\x06\n\x0c\n\x05\x04\
+    \0\x02\x01\x01\x12\x03)\x07\r\n\x0c\n\x05\x04\0\x02\x01\x03\x12\x03)\x10\
+    \x11\n;\n\x02\x04\x01\x12\x04-\00\x01\x1a/\x20Defines\x20options\x20for\
+    \x20indexing\x20multiple\x20fields.\n\n\n\n\x03\x04\x01\x01\x12\x03-\x08\
+    \x1e\n)\n\x04\x04\x01\x02\0\x12\x03/\x02*\x1a\x1c\x20List\x20of\x20compo\
+    site\x20indexes.\n\n\x0c\n\x05\x04\x01\x02\0\x04\x12\x03/\x02\n\n\x0c\n\
+    \x05\x04\x01\x02\0\x06\x12\x03/\x0b\x1f\n\x0c\n\x05\x04\x01\x02\0\x01\
+    \x12\x03/\x20%\n\x0c\n\x05\x04\x01\x02\0\x03\x12\x03/()\nN\n\x02\x04\x02\
+    \x12\x043\0:\x01\x1aB\x20Defines\x20options\x20for\x20composite\x20index\
+    es\x20involving\x20multiple\x20fields.\n\n\n\n\x03\x04\x02\x01\x12\x033\
+    \x08\x1c\n<\n\x04\x04\x02\x02\0\x12\x035\x02\x15\x1a/\x20Type\x20of\x20c\
+    omposite\x20index\x20(default\x20to\x20ordered).\n\n\x0c\n\x05\x04\x02\
+    \x02\0\x06\x12\x035\x02\x0b\n\x0c\n\x05\x04\x02\x02\0\x01\x12\x035\x0c\
+    \x10\n\x0c\n\x05\x04\x02\x02\0\x03\x12\x035\x13\x14\nA\n\x04\x04\x02\x02\
+    \x01\x12\x037\x02\x12\x1a4\x20Whether\x20this\x20is\x20a\x20unique\x20in\
+    dex\x20(default\x20to\x20false).\n\n\x0c\n\x05\x04\x02\x02\x01\x05\x12\
+    \x037\x02\x06\n\x0c\n\x05\x04\x02\x02\x01\x01\x12\x037\x07\r\n\x0c\n\x05\
+    \x04\x02\x02\x01\x03\x12\x037\x10\x11\nC\n\x04\x04\x02\x02\x02\x12\x039\
     \x02\x1d\x1a6\x20List\x20of\x20field\x20names\x20involved\x20in\x20the\
-    \x20composite\x20index.\n\n\x0c\n\x05\x04\x02\x02\x02\x04\x12\x035\x02\n\
-    \n\x0c\n\x05\x04\x02\x02\x02\x05\x12\x035\x0b\x11\n\x0c\n\x05\x04\x02\
-    \x02\x02\x01\x12\x035\x12\x18\n\x0c\n\x05\x04\x02\x02\x02\x03\x12\x035\
-    \x1b\x1c\nD\n\x02\x05\x01\x12\x049\0>\x01\x1a8\x20Specifies\x20the\x20fo\
+    \x20composite\x20index.\n\n\x0c\n\x05\x04\x02\x02\x02\x04\x12\x039\x02\n\
+    \n\x0c\n\x05\x04\x02\x02\x02\x05\x12\x039\x0b\x11\n\x0c\n\x05\x04\x02\
+    \x02\x02\x01\x12\x039\x12\x18\n\x0c\n\x05\x04\x02\x02\x02\x03\x12\x039\
+    \x1b\x1c\nD\n\x02\x05\x01\x12\x04=\0B\x01\x1a8\x20Specifies\x20the\x20fo\
     rmat\x20for\x20encoding/decoding\x20bytes\x20data.\n\n\n\n\x03\x05\x01\
-    \x01\x12\x039\x05\x0f\n(\n\x04\x05\x01\x02\0\x12\x03;\x02\x19\x1a\x1b\
+    \x01\x12\x03=\x05\x0f\n(\n\x04\x05\x01\x02\0\x12\x03?\x02\x19\x1a\x1b\
     \x20Standard\x20base64\x20encoding.\n\n\x0c\n\x05\x05\x01\x02\0\x01\x12\
-    \x03;\x02\x14\n\x0c\n\x05\x05\x01\x02\0\x02\x12\x03;\x17\x18\n$\n\x04\
-    \x05\x01\x02\x01\x12\x03=\x02\x16\x1a\x17\x20Hexadecimal\x20encoding.\n\
-    \n\x0c\n\x05\x05\x01\x02\x01\x01\x12\x03=\x02\x11\n\x0c\n\x05\x05\x01\
-    \x02\x01\x02\x12\x03=\x14\x15\nG\n\x02\x04\x03\x12\x04A\0D\x01\x1a;\x20D\
+    \x03?\x02\x14\n\x0c\n\x05\x05\x01\x02\0\x02\x12\x03?\x17\x18\n$\n\x04\
+    \x05\x01\x02\x01\x12\x03A\x02\x16\x1a\x17\x20Hexadecimal\x20encoding.\n\
+    \n\x0c\n\x05\x05\x01\x02\x01\x01\x12\x03A\x02\x11\n\x0c\n\x05\x05\x01\
+    \x02\x01\x02\x12\x03A\x14\x15\nG\n\x02\x04\x03\x12\x04E\0H\x01\x1a;\x20D\
     efines\x20options\x20for\x20how\x20bytes\x20fields\x20are\x20encoded/dec\
-    oded.\n\n\n\n\x03\x04\x03\x01\x12\x03A\x08\x13\nM\n\x04\x04\x03\x02\0\
-    \x12\x03C\x02\x18\x1a@\x20Format\x20to\x20use\x20for\x20displaying\x20bi\
-    nary\x20data\x20(defaults\x20to\x20base64).\n\n\x0c\n\x05\x04\x03\x02\0\
-    \x06\x12\x03C\x02\x0c\n\x0c\n\x05\x04\x03\x02\0\x01\x12\x03C\r\x13\n\x0c\
-    \n\x05\x04\x03\x02\0\x03\x12\x03C\x16\x17\nL\n\x02\x04\x04\x12\x04G\0L\
+    oded.\n\n\n\n\x03\x04\x03\x01\x12\x03E\x08\x13\nL\n\x04\x04\x03\x02\0\
+    \x12\x03G\x02\x18\x1a?\x20Format\x20to\x20use\x20for\x20displaying\x20bi\
+    nary\x20data\x20(default\x20to\x20base64).\n\n\x0c\n\x05\x04\x03\x02\0\
+    \x06\x12\x03G\x02\x0c\n\x0c\n\x05\x04\x03\x02\0\x01\x12\x03G\r\x13\n\x0c\
+    \n\x05\x04\x03\x02\0\x03\x12\x03G\x16\x17\nL\n\x02\x04\x04\x12\x04K\0P\
     \x01\x1a@\x20Defines\x20options\x20for\x20how\x20numeric\x20fields\x20ar\
-    e\x20scaled/represented.\n\n\n\n\x03\x04\x04\x01\x12\x03G\x08\x15\nG\n\
-    \x04\x04\x04\x02\0\x12\x03I\x02\x20\x1a:\x20Total\x20number\x20of\x20sig\
+    e\x20scaled/represented.\n\n\n\n\x03\x04\x04\x01\x12\x03K\x08\x15\nG\n\
+    \x04\x04\x04\x02\0\x12\x03M\x02\x20\x1a:\x20Total\x20number\x20of\x20sig\
     nificant\x20digits\x20(including\x20decimals).\n\n\x0c\n\x05\x04\x04\x02\
-    \0\x04\x12\x03I\x02\n\n\x0c\n\x05\x04\x04\x02\0\x05\x12\x03I\x0b\x11\n\
-    \x0c\n\x05\x04\x04\x02\0\x01\x12\x03I\x12\x1b\n\x0c\n\x05\x04\x04\x02\0\
-    \x03\x12\x03I\x1e\x1f\n9\n\x04\x04\x04\x02\x01\x12\x03K\x02\x1c\x1a,\x20\
+    \0\x04\x12\x03M\x02\n\n\x0c\n\x05\x04\x04\x02\0\x05\x12\x03M\x0b\x11\n\
+    \x0c\n\x05\x04\x04\x02\0\x01\x12\x03M\x12\x1b\n\x0c\n\x05\x04\x04\x02\0\
+    \x03\x12\x03M\x1e\x1f\n9\n\x04\x04\x04\x02\x01\x12\x03O\x02\x1c\x1a,\x20\
     Number\x20of\x20decimal\x20places\x20(0\x20for\x20integers).\n\n\x0c\n\
-    \x05\x04\x04\x02\x01\x04\x12\x03K\x02\n\n\x0c\n\x05\x04\x04\x02\x01\x05\
-    \x12\x03K\x0b\x11\n\x0c\n\x05\x04\x04\x02\x01\x01\x12\x03K\x12\x17\n\x0c\
-    \n\x05\x04\x04\x02\x01\x03\x12\x03K\x1a\x1bb\x06proto3\
+    \x05\x04\x04\x02\x01\x04\x12\x03O\x02\n\n\x0c\n\x05\x04\x04\x02\x01\x05\
+    \x12\x03O\x0b\x11\n\x0c\n\x05\x04\x04\x02\x01\x01\x12\x03O\x12\x17\n\x0c\
+    \n\x05\x04\x04\x02\x01\x03\x12\x03O\x1a\x1b\nH\n\x02\x04\x05\x12\x04S\0`\
+    \x01\x1a<\x20Defines\x20options\x20for\x20aggregating\x20data\x20from\
+    \x20another\x20message.\n\n\n\n\x03\x04\x05\x01\x12\x03S\x08\x12\n-\n\
+    \x04\x04\x05\x02\0\x12\x03U\x02\x13\x1a\x20\x20Topic\x20that\x20is\x20ag\
+    gregated\x20from.\n\n\x0c\n\x05\x04\x05\x02\0\x05\x12\x03U\x02\x08\n\x0c\
+    \n\x05\x04\x05\x02\0\x01\x12\x03U\t\x0e\n\x0c\n\x05\x04\x05\x02\0\x03\
+    \x12\x03U\x11\x12\nF\n\x04\x04\x05\x02\x01\x12\x03W\x02\x18\x1a9\x20Whet\
+    her\x20this\x20is\x20a\x20materialized\x20view\x20(default\x20to\x20fals\
+    e).\n\n\x0c\n\x05\x04\x05\x02\x01\x05\x12\x03W\x02\x06\n\x0c\n\x05\x04\
+    \x05\x02\x01\x01\x12\x03W\x07\x13\n\x0c\n\x05\x04\x05\x02\x01\x03\x12\
+    \x03W\x16\x17\nI\n\x04\x04\x05\x02\x02\x12\x03Y\x02\x14\x1a<\x20Whether\
+    \x20to\x20enable\x20realtime\x20aggregation\x20(default\x20to\x20false).\
+    \n\n\x0c\n\x05\x04\x05\x02\x02\x05\x12\x03Y\x02\x06\n\x0c\n\x05\x04\x05\
+    \x02\x02\x01\x12\x03Y\x07\x0f\n\x0c\n\x05\x04\x05\x02\x02\x03\x12\x03Y\
+    \x12\x13\n:\n\x04\x04\x05\x02\x03\x12\x03[\x02\x1e\x1a-\x20Time\x20inter\
+    val\x20to\x20refresh\x20materialized\x20view.\n\n\x0c\n\x05\x04\x05\x02\
+    \x03\x05\x12\x03[\x02\x08\n\x0c\n\x05\x04\x05\x02\x03\x01\x12\x03[\t\x19\
+    \n\x0c\n\x05\x04\x05\x02\x03\x03\x12\x03[\x1c\x1d\n\x1c\n\x04\x04\x05\
+    \x02\x04\x12\x03]\x02\x1e\x1a\x0f\x20View\x20options.\n\n\x0c\n\x05\x04\
+    \x05\x02\x04\x04\x12\x03]\x02\n\n\x0c\n\x05\x04\x05\x02\x04\x05\x12\x03]\
+    \x0b\x11\n\x0c\n\x05\x04\x05\x02\x04\x01\x12\x03]\x12\x19\n\x0c\n\x05\
+    \x04\x05\x02\x04\x03\x12\x03]\x1c\x1d\n8\n\x04\x04\x05\x02\x05\x12\x03_\
+    \x02\x1f\x1a+\x20List\x20of\x20field\x20names\x20used\x20for\x20aggregat\
+    ion.\n\n\x0c\n\x05\x04\x05\x02\x05\x04\x12\x03_\x02\n\n\x0c\n\x05\x04\
+    \x05\x02\x05\x05\x12\x03_\x0b\x11\n\x0c\n\x05\x04\x05\x02\x05\x01\x12\
+    \x03_\x12\x1a\n\x0c\n\x05\x04\x05\x02\x05\x03\x12\x03_\x1d\x1eb\x06proto\
+    3\
 ";
 
 /// `FileDescriptorProto` object which was a source for this generated file
@@ -986,12 +1252,13 @@ pub fn file_descriptor() -> &'static ::protobuf::reflect::FileDescriptor {
         let generated_file_descriptor = generated_file_descriptor_lazy.get(|| {
             let mut deps = ::std::vec::Vec::with_capacity(1);
             deps.push(::protobuf::descriptor::file_descriptor().clone());
-            let mut messages = ::std::vec::Vec::with_capacity(5);
+            let mut messages = ::std::vec::Vec::with_capacity(6);
             messages.push(IndexOption::generated_message_descriptor_data());
             messages.push(CompositeIndexesOption::generated_message_descriptor_data());
             messages.push(CompositeIndexOption::generated_message_descriptor_data());
             messages.push(BytesOption::generated_message_descriptor_data());
             messages.push(NumericOption::generated_message_descriptor_data());
+            messages.push(ViewOption::generated_message_descriptor_data());
             let mut enums = ::std::vec::Vec::with_capacity(2);
             enums.push(IndexType::generated_enum_descriptor_data());
             enums.push(FormatType::generated_enum_descriptor_data());
